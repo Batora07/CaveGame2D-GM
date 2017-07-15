@@ -18,6 +18,10 @@
     <sprites name="Level">
       <sprite>sprites\spr_solid</sprite>
       <sprite>sprites\spr_dirt</sprite>
+      <sprite>sprites\spr_entrance</sprite>
+      <sprite>sprites\spr_exit</sprite>
+      <sprite>sprites\spr_dirt_top</sprite>
+      <sprite>sprites\spr_dirt_edge</sprite>
     </sprites>
     <sprites name="Enemies">
       <sprite>sprites\spr_snake</sprite>
@@ -26,18 +30,29 @@
       <sprite>sprites\spr_spider</sprite>
       <sprite>sprites\spr_enemy_mask</sprite>
     </sprites>
+    <sprites name="GUI_icons">
+      <sprite>sprites\spr_heart</sprite>
+    </sprites>
+    <sprites name="Effects">
+      <sprite>sprites\spr_blood</sprite>
+    </sprites>
   </sprites>
-  <backgrounds name="background"/>
+  <backgrounds name="background">
+    <background>background\bg_dirt</background>
+  </backgrounds>
   <paths name="paths"/>
   <scripts name="scripts">
     <scripts name="HelperScripts">
       <script>scripts\move.gml</script>
+      <script>scripts\direction_move_bounce.gml</script>
       <script>scripts\horizontal_move_bounce.gml</script>
       <script>scripts\apply_friction.gml</script>
     </scripts>
     <scripts name="PlayerStates">
       <script>scripts\move_state.gml</script>
       <script>scripts\ledge_grab_state.gml</script>
+      <script>scripts\hurt_state.gml</script>
+      <script>scripts\exit_state.gml</script>
     </scripts>
     <scripts name="SnakeStates">
       <script>scripts\snake_move_right_state.gml</script>
@@ -55,19 +70,31 @@
   <objects name="objects">
     <objects name="Player">
       <object>objects\Player</object>
+      <object>objects\PlayerStats</object>
     </objects>
     <objects name="Level">
       <object>objects\Solid</object>
       <object>objects\Dirt</object>
+      <object>objects\Entrance</object>
+      <object>objects\Exit</object>
+      <object>objects\Background</object>
     </objects>
     <objects name="Enemies">
+      <object>objects\EnemyParent</object>
       <object>objects\Snake</object>
       <object>objects\Bat</object>
       <object>objects\Spider</object>
     </objects>
+    <objects name="Effects">
+      <object>objects\Blood</object>
+    </objects>
   </objects>
   <rooms name="rooms">
     <room>rooms\rm_one</room>
+    <room>rooms\rm_two</room>
+    <room>rooms\rm_three</room>
+    <room>rooms\rm_four</room>
+    <room>rooms\rm_five</room>
   </rooms>
   <help>
     <rtf>help.rtf</rtf>
