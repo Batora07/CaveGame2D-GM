@@ -35,23 +35,21 @@ if (!place_meeting(x, y+1, Solid)) {
 }
 
 // Move the Player
-if (right) {
-    hspd = spd;
-}
- 
-if (left) {
-    hspd = -spd;
-    hspd_dir = -1;
+
+if (right || left) {
+    hspd += (right-left) * acc;
+    hspd_dir = right - left;
+    
+    if (hspd > spd) hspd = spd;
+    if (hspd < -spd) hspd = -spd; 
+} else {
+    apply_friction(acc);
 }
 
 if (hspd != 0){
     image_xscale = sign(hspd);
 }
 
-//  friction
-if (!right && !left) {
-    hspd = 0;
-}
 
 move(Solid);
 
