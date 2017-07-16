@@ -26,7 +26,7 @@
           <argument>
             <kind>1</kind>
             <string>/// Initialize the player object
-spd = 5; // speed
+spd = 6; // speed
 acc = 2; // acceleration
 hspd = 0; // horizontal speed
 vspd = 0; // vertical speed
@@ -34,6 +34,12 @@ grav = 1.5; // gravity
 jmpHeightMax = -16;
 jmpHeightMin = -6; // jump Height
 state = move_state;
+
+/// Get the input
+get_input();
+
+// Create the audio emitter
+audio_em = audio_emitter_create();
 </string>
           </argument>
         </arguments>
@@ -57,13 +63,16 @@ state = move_state;
           <argument>
             <kind>1</kind>
             <string>/// Control the player's state
+get_input();
+
+//Execute the state
 script_execute(state);
 </string>
           </argument>
         </arguments>
       </action>
     </event>
-    <event eventtype="4" ename="Exit">
+    <event eventtype="4" ename="Boss">
       <action>
         <libid>1</libid>
         <id>603</id>
@@ -80,12 +89,8 @@ script_execute(state);
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>/// Go to next level
-
-if (keyboard_check(vk_up)) {
-    y = yprevious;
-    state = exit_state;
-}
+            <string>/// Take damage from the boss
+take_damage();
 </string>
           </argument>
         </arguments>
@@ -128,21 +133,91 @@ if (above_enemy &amp;&amp; (falling || state = ledge_grab_state)) {
     
     //bounce off the enemy
     vspd = -(-jmpHeightMax/1.5);
+    
+    //Play the sound
+    audio_play_sound(snd_step, 6, false);
+    
 } else {
-    // take damage
-    if (state != hurt_state) {
-        image_blend = make_colour_rgb(220,150,150);
-        vspd = -12;
-        hspd = (sign(x-other.x) * 10);
-        
-        state = hurt_state;
-        
-        move(Solid);
-        
-        if (instance_exists(PlayerStats)) {
-            PlayerStats.hp -= 1;
-        }
-    }
+    take_damage();
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="4" ename="Lava">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// Take damage from the lava
+take_damage();
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="4" ename="Saphire">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// Collect the sapphire
+PlayerStats.sapphires += 1;
+with (other) instance_destroy();
+audio_play_sound(snd_tink, 4, false);
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="4" ename="Exit">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// Go to next level
+if (up &amp;&amp; other.visible == true) {
+    y = yprevious;
+    state = exit_state;
+    audio_stop_sound(snd_jump);
+    audio_play_sound(snd_exit, 4, false);
 }
 </string>
           </argument>

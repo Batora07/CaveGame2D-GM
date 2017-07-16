@@ -19,5 +19,13 @@ direction_move_bounce(Solid);
 // Change back to the move state
 if (hspd == 0 && vspd == 0) {
     image_blend = c_white;
+    if (PlayerStats.hp <= 0) {
+        PlayerStats.sapphires = 0;
+        PlayerStats.hp = PlayerStats.maxHp;
+        if (audio_is_playing(snd_boss_music)) {
+            audio_stop_sound(snd_boss_music);
+        }
+        room_restart();
+    }
     state = move_state;
 }

@@ -4,7 +4,18 @@
     <Config>Configs\Default</Config>
   </Configs>
   <NewExtensions/>
-  <sounds name="sound"/>
+  <sounds name="sound">
+    <sound>sound\snd_tink</sound>
+    <sound>sound\snd_bat</sound>
+    <sound>sound\snd_exit</sound>
+    <sound>sound\snd_jump</sound>
+    <sound>sound\snd_ouch</sound>
+    <sound>sound\snd_snake</sound>
+    <sound>sound\snd_spider</sound>
+    <sound>sound\snd_step</sound>
+    <sound>sound\snd_music</sound>
+    <sound>sound\snd_boss_music</sound>
+  </sounds>
   <sprites name="sprites">
     <sprites name="Player">
       <sprite>sprites\spr_player_idle</sprite>
@@ -16,12 +27,14 @@
       <sprite>sprites\spr_player_mask</sprite>
     </sprites>
     <sprites name="Level">
+      <sprite>sprites\spr_saphire</sprite>
       <sprite>sprites\spr_solid</sprite>
       <sprite>sprites\spr_dirt</sprite>
       <sprite>sprites\spr_entrance</sprite>
       <sprite>sprites\spr_exit</sprite>
       <sprite>sprites\spr_dirt_top</sprite>
       <sprite>sprites\spr_dirt_edge</sprite>
+      <sprite>sprites\spr_lava</sprite>
     </sprites>
     <sprites name="Enemies">
       <sprite>sprites\spr_snake</sprite>
@@ -32,13 +45,20 @@
     </sprites>
     <sprites name="GUI_icons">
       <sprite>sprites\spr_heart</sprite>
+      <sprite>sprites\spr_saphire_GUI</sprite>
     </sprites>
     <sprites name="Effects">
       <sprite>sprites\spr_blood</sprite>
+      <sprite>sprites\spr_saphire_chunk</sprite>
+      <sprite>sprites\spr_lava_bubble</sprite>
+    </sprites>
+    <sprites name="Boss">
+      <sprite>sprites\spr_boss</sprite>
     </sprites>
   </sprites>
   <backgrounds name="background">
     <background>background\bg_dirt</background>
+    <background>background\bg_menu</background>
   </backgrounds>
   <paths name="paths"/>
   <scripts name="scripts">
@@ -53,6 +73,8 @@
       <script>scripts\ledge_grab_state.gml</script>
       <script>scripts\hurt_state.gml</script>
       <script>scripts\exit_state.gml</script>
+      <script>scripts\get_input.gml</script>
+      <script>scripts\take_damage.gml</script>
     </scripts>
     <scripts name="SnakeStates">
       <script>scripts\snake_move_right_state.gml</script>
@@ -66,7 +88,18 @@
       <script>scripts\spider_idle_state.gml</script>
       <script>scripts\spider_jump_state.gml</script>
     </scripts>
+    <scripts name="BossStates">
+      <script>scripts\boss_idle_state.gml</script>
+      <script>scripts\boss_lift_state.gml</script>
+      <script>scripts\boss_chase_state.gml</script>
+      <script>scripts\boss_smash_state.gml</script>
+      <script>scripts\boss_stall_state.gml</script>
+    </scripts>
   </scripts>
+  <fonts name="fonts">
+    <font>fonts\fnt_title</font>
+    <font>fonts\fnt_start</font>
+  </fonts>
   <objects name="objects">
     <objects name="Player">
       <object>objects\Player</object>
@@ -78,6 +111,8 @@
       <object>objects\Entrance</object>
       <object>objects\Exit</object>
       <object>objects\Background</object>
+      <object>objects\Saphire</object>
+      <object>objects\Lava</object>
     </objects>
     <objects name="Enemies">
       <object>objects\EnemyParent</object>
@@ -87,14 +122,22 @@
     </objects>
     <objects name="Effects">
       <object>objects\Blood</object>
+      <object>objects\SaphireChunk</object>
+      <object>objects\LavaBubble</object>
+    </objects>
+    <objects name="Boss">
+      <object>objects\Boss</object>
     </objects>
   </objects>
   <rooms name="rooms">
+    <room>rooms\rm_menu</room>
+    <room>rooms\rm_highscore</room>
     <room>rooms\rm_one</room>
     <room>rooms\rm_two</room>
     <room>rooms\rm_three</room>
     <room>rooms\rm_four</room>
     <room>rooms\rm_five</room>
+    <room>rooms\rm_boss</room>
   </rooms>
   <help>
     <rtf>help.rtf</rtf>
