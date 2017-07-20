@@ -3,6 +3,15 @@ Game maker prototype game (made with 1.4)
 Made with the assets and courses from Benjamin Anderson (https://twitter.com/uheartbeast)
 [https://www.udemy.com/make-a-game-and-learn-to-code-in-gamemaker-studio/learn/v4/overview][1]
 
+Music by Keven Macleod:
+"Volatile Reaction" Kevin MacLeod (incompetech.com) 
+Licensed under Creative Commons: By Attribution 3.0
+http://creativecommons.org/licenses/by/3.0/
+
+"Oppressive Gloom" Kevin MacLeod (incompetech.com) 
+Licensed under Creative Commons: By Attribution 3.0
+http://creativecommons.org/licenses/by/3.0/
+
 Project made with GameMaker 1.4.
 The executable file is included in the final commit.
 
